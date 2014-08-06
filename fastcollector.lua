@@ -154,7 +154,6 @@ function fastcollector_command(...)
     elseif #arg == 0 then
         windower.add_to_chat(167, 'usage:')
         windower.add_to_chat(167, '  fc make <set name>')
-        windower.add_to_chat(167, '  fc delete <set name>')
         windower.add_to_chat(167, '  fc list [set name]')
         windower.add_to_chat(167, '  fc <set name> [set name] ...')
     elseif #arg == 2 and arg[1]:lower() == 'make' then
@@ -171,15 +170,6 @@ function fastcollector_command(...)
                 end
             end
             settings.sets[set_name] = new_set
-            settings:save()
-        end
-    elseif #arg == 2 and arg[1]:lower() == 'delete' then
-        local set_name = arg[2]:lower()
-        if settings.sets[set_name] == nil then
-            windower.add_to_chat(167, 'unknown set: ' .. set_name)
-        else
-            windower.add_to_chat(204, 'deleting set: ' .. set_name)
-            settings.sets[set_name] = nil
             settings:save()
         end
     elseif (#arg == 1 or #arg == 2) and arg[1]:lower() == 'list' then
@@ -213,13 +203,13 @@ function fastcollector_command(...)
         end
         next_bag()
         if current_bag then
-            windower.add_to_chat(200, 'collection started.')
+            windower.add_to_chat(200, 'collection started')
             for i = 0,15 do
                 windower.ffxi.set_equip(0, i, 0)
             end
             windower.send_command('wait %s; lua i fastcollector put_away':format(settings.delay))
         else
-            windower.add_to_chat(167, 'no bags enabled.')
+            windower.add_to_chat(167, 'no bags enabled')
         end
     end
 end
