@@ -53,6 +53,7 @@ defaults.locker = true
 defaults.satchel = true
 defaults.sack = true
 defaults.case = true
+defaults.forcenomad = false
 defaults.delay = 2
 defaults.ignore = {'Linkshell', 'Linkpearl', 'Pearlsack'}
 defaults.sets = {}
@@ -165,7 +166,7 @@ function fastcollector_command(...)
             local new_set = {}
             ignore = S(settings.ignore)
             for _,item in pairs(windower.ffxi.get_items().inventory) do
-                if item.id ~= 0  and not ignore:contains(res.items[inv_item.id].name) then
+                if item.id ~= 0  and not ignore:contains(res.items[item.id].name) then
                     table.insert(new_set, res.items[item.id].name)
                 end
             end
