@@ -55,7 +55,8 @@ defaults.sack = true
 defaults.case = true
 defaults.forcenomad = false
 defaults.delay = 2
-defaults.ignore = {'Linkshell', 'Linkpearl', 'Pearlsack'}
+--defaults.ignore = {'Linkshell', 'Linkpearl', 'Pearlsack'}
+defaults.ignore = {}
 defaults.sets = {}
 defaults.sets.empty = {}
 
