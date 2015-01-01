@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -- addon information
 
 _addon.name = 'fastcollector'
-_addon.version = '1.0.0'
+_addon.version = '1.0.1'
 _addon.command = 'fastcollector'
 _addon.commands = {'fc'}
 _addon.author = 'Seth VanHeulen (Acacia@Odin)'
@@ -55,8 +55,11 @@ defaults.sack = true
 defaults.case = true
 defaults.forcenomad = false
 defaults.delay = 2
---defaults.ignore = {'Linkshell', 'Linkpearl', 'Pearlsack'}
-defaults.ignore = {}
+defaults.ignore = {
+    ['01']='Linkshell', ['02']='Linkpearl', ['03']='Pearlsack',
+    ['04']="Beastmen's Seal", ['05']="Kindred's Seal", ['06']="Kindred's Crest", ['07']='H. Kindred Crest', ['08']='S. Kindred Crest',
+    ['09']='Warp Ring', ['10']='Mecisto. Mantle', ['11']='Capacity Ring'
+}
 defaults.sets = {}
 defaults.sets.empty = {}
 
@@ -108,7 +111,7 @@ function put_away()
         if dest_space < 1 then
             break
         end
-        if inv_item.id ~= 0 and inv_item.status == 0 and not item_set:contains(res.items[inv_item.id].name) and not ignore:contains(res.items[inv_item.id].name) then
+        if type(inv_item) == 'table' and inv_item.id ~= 0 and inv_item.status == 0 and not item_set:contains(res.items[inv_item.id].name) and not ignore:contains(res.items[inv_item.id].name) then
             windower.ffxi.put_item(current_bag, inv_slot, inv_item.count)
             dest_space = dest_space - 1
             moved = moved + 1
@@ -130,7 +133,7 @@ function get_out()
         if inv_space < 1 then
             break
         end
-        if src_item.id ~= 0 and src_item.status == 0 and item_set:contains(res.items[src_item.id].name) then
+        if type(src_item) == 'table' and src_item.id ~= 0 and src_item.status == 0 and item_set:contains(res.items[src_item.id].name) then
             windower.ffxi.get_item(current_bag, src_slot, src_item.count)
             inv_space = inv_space - 1
             moved = moved + 1
