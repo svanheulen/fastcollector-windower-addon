@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -- addon information
 
 _addon.name = 'fastcollector'
-_addon.version = '1.0.1'
+_addon.version = '1.0.2'
 _addon.command = 'fastcollector'
 _addon.commands = {'fc'}
 _addon.author = 'Seth VanHeulen (Acacia@Odin)'
@@ -170,7 +170,7 @@ function fastcollector_command(...)
             local new_set = {}
             ignore = S(settings.ignore)
             for _,item in pairs(windower.ffxi.get_items().inventory) do
-                if item.id ~= 0  and not ignore:contains(res.items[item.id].name) then
+                if type(inv_item) == 'table' and item.id ~= 0  and not ignore:contains(res.items[item.id].name) then
                     table.insert(new_set, res.items[item.id].name)
                 end
             end
