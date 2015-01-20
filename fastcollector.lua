@@ -33,7 +33,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -- addon information
 
 _addon.name = 'fastcollector'
-_addon.version = '1.0.2'
+_addon.version = '1.0.3'
 _addon.command = 'fastcollector'
 _addon.commands = {'fc'}
 _addon.author = 'Seth VanHeulen (Acacia@Odin)'
